@@ -33,3 +33,8 @@ run-prod:
 # to generate a new app secret
 gen-secret:
 	${PI} ${SCRIPTS_DIR}/generate_secret.py	
+
+
+# run automated code tests
+test:
+	dotenv ${PI} -m unittest ./app/**/test_*.py
