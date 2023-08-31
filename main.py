@@ -1,22 +1,11 @@
 from fastapi import FastAPI
 import uvicorn
-from dataclasses import dataclass
-from app.config.server import ServerConfig
-from app.core.helpers.env import is_dev
+from app.config.server_config import ServerConfig
+from app.config.app_config import AppConfig
+from app.modules.auth.auth_router import auth_router
 
 app = FastAPI()
-
-
-@dataclass
-class HomeResponse:
-    message: str
-
-
-@app.get("/")
-async def home() -> HomeResponse:
-    return HomeResponse(
-        message="Hello from server",
-    )
+app.include_router(auth_router)
 
 
 if __name__ == "__main__":
@@ -24,5 +13,5 @@ if __name__ == "__main__":
         "main:app",
         host=ServerConfig.host,
         port=ServerConfig.port,
-        reload=is_dev(),
+        reload=AppConfig.debug,
     )

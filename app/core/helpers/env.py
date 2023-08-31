@@ -8,11 +8,3 @@ def env(key: str) -> str:
         raise Exception(f"failed to read environment variable: {key}")
 
     return value
-
-
-def is_dev() -> bool:
-    value: str | None = os.getenv("PYENV")
-    if not value:
-        return False
-
-    return value == "dev"

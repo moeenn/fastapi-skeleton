@@ -2,7 +2,7 @@ import jwt
 from dataclasses import dataclass, asdict
 from datetime import datetime, timezone, timedelta
 from typing import Any
-from app.config.auth import AuthConfig
+from app.config.auth_config import AuthConfig
 
 
 @dataclass
